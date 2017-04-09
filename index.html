@@ -43,6 +43,7 @@
 <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
 <script src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 
@@ -52,8 +53,26 @@
 			<img id="my-image" src="image.png">
 		</a-assets>
 		<!-- Using the asset management system. -->
-		<a-image src="#my-image"></a-image>
+		<a-entity id="text" text=""></a-entity>
+		<!-- <a-image src="#my-image"></a-image> -->
 		<a-marker-camera preset='hiro'></a-marker-camera>
 	</a-scene>
+	<script>
+		/* global $ */
+		$(document).ready(function(){
+			var str = 'Welcome to Atlantic Treasure! You\'re path to fortune!';
+			var strAry = str.split('');
+			var newStr = '';
+			var index = 0;
+			var writeTxt = setInterval(function(){
+				newStr = newStr + strAry[index];
+				$('#text').attr('text', 'value: ' + newStr + '; width: 8;');
+				index++;
+				if(index > strAry.length - 1) {  
+					clearInterval(writeTxt);
+				}
+			}, 1000);
+		});
+	</script>
 </body>
 </html>
