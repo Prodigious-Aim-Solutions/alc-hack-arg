@@ -6,15 +6,32 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
-
-        <link rel="stylesheet" href="css/normalize.css">
+        <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Lobster+Two:400i" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/main.css">
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <style>
+            html {
+                background: url('/img/background.png') no-repeat scroll 0 0 transparent;
+                font-size: 64pt;
+            }
+            body {
+                background: transparent;
+            }
+            h1 {
+                font-family: 'Gloria Hallelujah', cursive;
+                font-size: 1rem;
+            }
+            h2, h3 {
+                font-family: 'Lobster Two', cursive;
+                font-style: italic;
+            }
+            h2 {
+                font-size: .5rem;
+            }
+            h3 {
+                font-size: .25rem;
+            }
+        </style>
     </head>
     <body class="container">
         <!--[if lte IE 9]>
@@ -26,14 +43,23 @@
             <div class="col-md-12">
                 <h1 class="text-center">Chasin' The Ace</h1>
                 <h2 class="text-center">Jackpot!</h2>
-                <h3 class="text-center">$5000</h3>
+                <h3 id="jackpot" class="text-center">$----</h3>
             </div>
         </div>
         <p></p>
         <script src="https://code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.0.min.js"><\/script>')</script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+        <script>
+            $(document).ready(function(){
+                var doUpdateInterval = setInterval(function(){
+                    var startDate = 1491759368445;
+                    var currentDate = new Date().getTime();
+                    var dateDiff = currentDate - startDate;
+                    var dateVal = dateDiff / 1000;
+                    $('#jackpot').text('$' + (5000 + parseInt(dateVal)).toString());
+                }, 1000);
+            });
+        </script>
     </body>
 </html>
