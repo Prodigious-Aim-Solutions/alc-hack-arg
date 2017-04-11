@@ -49,29 +49,22 @@
 
 <body style='margin : 0px; overflow: hidden;'>
 	<a-scene embedded artoolkit='sourceType: webcam;'>
-		<a-assets>
-			<img id="my-image" src="image.png">
-		</a-assets>
 		<!-- Using the asset management system. -->
-		<a-entity id="text" text=""></a-entity>
-		<!-- <a-image src="#my-image"></a-image> -->
+		<a-entity id="text" text="" scale="8 8 8"></a-entity>
 		<a-marker-camera preset='hiro'></a-marker-camera>
 	</a-scene>
 	<script>
 		/* global $ */
 		$(document).ready(function(){
-			var str = 'Welcome to Atlantic Treasure! You\'re path to fortune!';
-			var strAry = str.split('');
-			var newStr = '';
-			var index = 0;
-			var writeTxt = setInterval(function(){
-				newStr = newStr + strAry[index];
-				$('#text').attr('text', 'value: ' + newStr + '; width: 8;');
-				index++;
-				if(index > strAry.length - 1) {  
-					clearInterval(writeTxt);
-				}
-			}, 1000);
+			var labelTxt = 'Chasin\' The Ace \n';
+			var jackpotTxt = 'Jackpot! \n';
+			var doUpdateInterval = setInterval(function(){
+                    var startDate = 1491759368445;
+                    var currentDate = new Date().getTime();
+                    var dateDiff = currentDate - startDate;
+                    var dateVal = dateDiff / 1000;
+                    $('#text').attr('text', 'value: '+ labelTxt + jackpotTxt + '$' + (5000 + parseInt(dateVal)).toString() + '; color: orange;');
+                }, 1000);
 		});
 	</script>
 </body>
